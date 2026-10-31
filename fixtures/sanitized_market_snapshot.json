@@ -1,0 +1,50 @@
+{
+  "dataset_type": "sanitized_summary_from_archived_public_observations",
+  "snapshot_date": "2026-10-31",
+  "market": "PL",
+  "roster_brands": 18,
+  "priced_brands": 15,
+  "disclaimer": "Curated historical public calculator summaries, not approved offers, independently reverified current quotes or a market census. Source captures are deliberately not distributed.",
+  "spl": {
+    "scenario": {"principal_pln": 2000, "duration_days": 30},
+    "statutory_scenario_reference_pln": 240.27,
+    "reference_method": "Modelled scenario reference using then-applicable Polish statutory interest and non-interest cost parameters, not a universally binding ceiling for all contracts.",
+    "paid_observations": [
+      {"brand": "Wonga", "borrow_cost_pln": 239.83, "segment": "repeat_public_tab"},
+      {"brand": "Vivigo (Vivus)", "borrow_cost_pln": 240.13, "segment": "public_calculator_segment_unconfirmed"},
+      {"brand": "Eksprespozyczka.pl", "borrow_cost_pln": 240.14, "segment": "new_public_tab"},
+      {"brand": "AvaFin", "borrow_cost_pln": 240.16, "segment": "unverified"},
+      {"brand": "ExtraPortfel.pl", "borrow_cost_pln": 240.16, "segment": "new_public_calculator"},
+      {"brand": "Wandoo", "borrow_cost_pln": 240.18, "segment": "unverified"},
+      {"brand": "Kuki.pl", "borrow_cost_pln": 240.20, "segment": "new"},
+      {"brand": "Finbo", "borrow_cost_pln": 240.20, "segment": "new"},
+      {"brand": "Miloan", "borrow_cost_pln": 240.20, "segment": "standard_public_comparison"},
+      {"brand": "Pozyczkaplus", "borrow_cost_pln": 240.23, "segment": "new_paid_nonpromo"},
+      {"brand": "SMART pozyczka", "borrow_cost_pln": 240.23, "segment": "repeat_public_tab"}
+    ]
+  },
+  "inst": {
+    "scenario": {"principal_pln": 8000, "months": 12},
+    "modelled_annuity_reference_pln": 2242.16,
+    "reference_method": "Illustrative 12-payment annuity using then-applicable legal cost assumptions. Not a universal instalment-loan statutory limit.",
+    "observations": [
+      {"brand": "Provident", "borrow_cost_pln": 1159.00, "segment": "public_calculator_segment_unconfirmed"},
+      {"brand": "Vivi-Raty", "borrow_cost_pln": 2000.04, "segment": "new"},
+      {"brand": "Avior Finance", "borrow_cost_pln": 2188.00, "segment": "public_calculator_segment_unconfirmed", "qualification": "monthly instalment described as from"},
+      {"brand": "Hoprata", "borrow_cost_pln": 2236.07, "segment": "public_calculator_segment_unconfirmed"}
+    ]
+  },
+  "first_loan_promotions": [
+    {"brand": "Wonga", "headline": "0% first loan", "advertised_term_days": 61, "conditions": "Subject to eligibility; promotional maximum reported as PLN 6000"},
+    {"brand": "Vivigo", "headline": "0% first loan", "advertised_term_days": 61, "conditions": "Subject to promotion rules and customer eligibility"},
+    {"brand": "Miloan", "headline": "0% promotional column", "advertised_term_days": 30, "conditions": "Marketing consents and timely repayment displayed in archived calculator"},
+    {"brand": "Finbo", "headline": "0% first loan", "advertised_term_days": 30, "conditions": "Promotional amount-specific example; PLN 7000 referenced"},
+    {"brand": "Pozyczkaplus", "headline": "0% first loan", "advertised_term_days": 30, "conditions": "Advertising stated PLN 2100-8000; not equivalent to the PLN 2000 paid comparison"}
+  ],
+  "miloan_observation_summaries": {
+    "baseline": {"date": "2026-10-30", "principal_pln": 2000, "duration_days": 30, "price_column": "standard_public_comparison", "segment": "not_confirmed", "ancillary": "none_displayed", "offer_conditions": "standard_column", "interest_pln": 23.84, "commission_pln": 216.36, "total_cost_pln": 240.20, "rrso_percent": 297.46},
+    "mismatched_principal": {"date": "2026-10-31", "principal_pln": 3000, "duration_days": 30, "price_column": "standard_public_comparison", "segment": "not_confirmed", "ancillary": "none_displayed", "offer_conditions": "standard_column", "interest_pln": 35.75, "commission_pln": 324.55, "total_cost_pln": 360.30, "rrso_percent": 297.46},
+    "matched_unchanged": {"date": "2026-10-31", "principal_pln": 2000, "duration_days": 30, "price_column": "standard_public_comparison", "segment": "not_confirmed", "ancillary": "none_displayed", "offer_conditions": "standard_column", "interest_pln": 23.84, "commission_pln": 216.36, "total_cost_pln": 240.20, "rrso_percent": 297.46},
+    "synthetic_delta": {"date": "DEMO_ONLY", "principal_pln": 2000, "duration_days": 30, "price_column": "standard_public_comparison", "segment": "not_confirmed", "ancillary": "none_displayed", "offer_conditions": "standard_column", "interest_pln": 23.84, "commission_pln": 217.36, "total_cost_pln": 241.20, "rrso_percent": 297.46, "synthetic": true}
+  }
+}
