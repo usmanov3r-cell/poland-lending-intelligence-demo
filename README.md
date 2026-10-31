@@ -1,13 +1,17 @@
-# Poland Consumer Lending Intelligence
+# Poland Lending Market Intelligence
 
-**AI-enabled market research and lending product strategy | October 2026**
+**Consumer Lending | Non-Bank Financial Institutions | Poland**
 
-A portfolio demonstration of how public lending data can support competitor analysis, product strategy and evidence-based commercial decisions.
+A research project analyzing the Polish non-bank consumer lending market, covering **Short-Term Loans (SPL)** and **Instalment Loans (INST)**.
 
-**Key finding:** Across 11 selected Polish short-term lenders, observed paid borrowing costs for PLN 2,000 over 30 days range from PLN 239.83 to PLN 240.23, close to the modelled PLN 240.27 legal-cost reference.
+The research covers **11 non-bank lenders in the SPL pricing comparison**, alongside selected INST providers, with a focus on:
 
-This suggests limited room for standard-price differentiation in the observed scenario. Competitive strategy therefore warrants greater attention to new-customer promotions, repeat borrowing, eligibility, lending limits and customer economics.
+- **New vs. Returning Customers** - pricing, eligibility, promotional offers and repeat borrowing.
+- **Products & Pricing** - interest rates, fees, APR, loan amounts, repayment terms and total borrowing costs.
+- **Promotions & Acquisition** - 0% first-loan campaigns, promotional conditions and customer acquisition strategies.
+- **Market & Competition** - competitor positioning, pricing differences and product developments.
+- **Regulation** - lending cost caps, regulatory enforcement, central bank decisions and CCD II.
 
-**Research coverage:** 15 of 18 selected lender brands, including short-term and instalment loans.
+**Objective:** Support lending product strategy through competitor intelligence, pricing analysis, regulatory monitoring and AI-assisted research.
 
-The public demonstration runs locally without API credentials and uses sanitized historical observations. The full research and AI investigation environment is maintained separately.
+**Public demo:** An offline demonstration using sanitized historical observations and simulated change detection. Live research and AI investigation capabilities are maintained in the separate development project.
