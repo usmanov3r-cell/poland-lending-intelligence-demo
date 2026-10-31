@@ -1,4 +1,4 @@
-# Poland Lending Intelligence — offline portfolio release candidate
+# Public portfolio demonstration. Offline, reproducible research example using sanitized observations and synthetic monitoring tests. Not a live lending-price monitoring service.
 
 **Commercial research prototype | 31 October 2026 snapshot | Poland**
 
