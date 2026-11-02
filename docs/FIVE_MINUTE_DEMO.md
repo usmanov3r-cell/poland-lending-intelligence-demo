@@ -8,7 +8,7 @@
 
 ## 0:40–1:50 — Commercial finding, not technology
 
-“Across 11 selected paid SPL observations for PLN 2,000 / 30 days, disclosed costs cluster at PLN 239.83–240.23, close to a PLN 240.27 statutory reference. My interpretation is that the ceiling constrains visible price differentiation. The next questions are 0% acquisition, customer eligibility, limits, speed, and economics—not ‘who is cheapest by 40 groszy?’”
+“Across 11 paid SPL observations for PLN 2,000 / 30 days, I keep new and repeat borrowers apart: 5 new-borrower prices at PLN 240.14–240.23, 2 repeat-borrower prices at PLN 239.83–240.23, and 4 where the customer type could not be confirmed. Every group clusters close to a PLN 240.27 statutory reference. My interpretation is that the ceiling constrains visible price differentiation. The next questions are 0% acquisition, customer eligibility, limits, speed, and economics—not ‘who is cheapest by 40 groszy?’”
 
 “On PLN 8,000 / 12-month instalments, Provident is the outlier at PLN 1,159, while Hoprata is at PLN 2,236.07. These public scenarios are not risk-matched; the investigation is to decompose economics rather than label one lender more profitable.”
 

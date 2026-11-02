@@ -24,13 +24,19 @@ def main() -> None:
         raise FileNotFoundError("Missing bundled dashboard snapshot")
     shutil.copyfile(snapshot, dest / "index.html")
     (dest / "results.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    labels = {"new": "New borrower", "repeat": "Repeat borrower", "unconfirmed": "Customer type not confirmed"}
+    spl_lines = "\n".join(
+        f"  - {labels[g]}: {v['count']} lenders, PLN {float(v['range_pln'][0]):.2f}–{float(v['range_pln'][1]):.2f}"
+        for g, v in report["spl_by_segment"].items())
     markdown = f"""# Poland consumer lending — offline portfolio check
 
 **Archived research reference:** {report['as_of']} | **Coverage:** {report['coverage']} brands.
 
 ## Commercial observations (public calculator scenarios, not approved customer quotes)
 
-- **SPL:** {report['spl_count']} paid observations: PLN {report['spl_range_pln'][0]}–{report['spl_range_pln'][1]}, compared with modelled PLN {report['spl_scenario_reference_pln']} scenario reference. This cross-sectional cluster is consistent with a binding pricing constraint, not proven price imitation.
+- **SPL:** {report['spl_count']} paid observations, compared with modelled PLN {report['spl_scenario_reference_pln']} scenario reference. New and repeat borrower prices are shown separately, never pooled:
+{spl_lines}
+  Every group clusters just below the reference. This is consistent with a binding pricing constraint, not proven price imitation.
 - **INST:** {report['inst_count']} observations: PLN {report['inst_range_pln'][0]}–{report['inst_range_pln'][1]}. Provident at PLN {report['provident_cost_pln']} is the low-price outlier; Hoprata is PLN {report['hoprata_gap_below_modelled_reference_pln']} below the modelled instalment reference.
 - **Acquisition:** selected first-loan promotions use {', '.join(map(str,report['first_loan_promotion_terms_days']))}-day terms. Zero-price promotion eligibility and paid comparison columns must not be conflated.
 

@@ -26,6 +26,29 @@ def d(value: object) -> Decimal:
     return Decimal(str(value))
 
 
+SEGMENT_GROUPS = ("new", "repeat", "unconfirmed")
+
+
+def segment_group(segment: str) -> str:
+    """New and repeat prices are never pooled; anything unclear stays unconfirmed."""
+    if segment.startswith("new"):
+        return "new"
+    if segment.startswith("repeat"):
+        return "repeat"
+    return "unconfirmed"
+
+
+def spl_by_segment(observations: list) -> dict:
+    out = {}
+    for group in SEGMENT_GROUPS:
+        costs = [d(x["borrow_cost_pln"]) for x in observations
+                 if segment_group(x["segment"]) == group]
+        if costs:
+            out[group] = {"count": len(costs), "range_pln": [str(min(costs)), str(max(costs))]}
+    assert sum(v["count"] for v in out.values()) == len(observations)
+    return out
+
+
 def compare_price(baseline: dict, current: dict) -> dict:
     """No repricing conclusion without an identical scenario and conditions."""
     differences = [key for key in MATCH_KEYS if baseline.get(key) != current.get(key)]
@@ -72,6 +95,7 @@ def analyze(data: dict) -> dict:
         "spl_count": len(spl),
         "spl_range_pln": [str(min(spl_costs)), str(max(spl_costs))],
         "spl_scenario_reference_pln": str(reference_spl),
+        "spl_by_segment": spl_by_segment(spl),
         "inst_count": len(inst),
         "inst_range_pln": [str(min(inst_costs)), str(max(inst_costs))],
         "inst_modelled_reference_pln": str(reference_inst),

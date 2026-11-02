@@ -42,6 +42,14 @@ class OfflineMarketDemoTests(unittest.TestCase):
         self.assertEqual(report["hoprata_gap_below_modelled_reference_pln"], "6.09")
         self.assertEqual(report["first_loan_promotion_terms_days"], [30, 61])
 
+    def test_spl_new_and_repeat_not_pooled(self):
+        groups = analyze(self.data)["spl_by_segment"]
+        self.assertEqual({g: v["count"] for g, v in groups.items()},
+                         {"new": 5, "repeat": 2, "unconfirmed": 4})
+        self.assertEqual(groups["new"]["range_pln"], ["240.14", "240.23"])
+        self.assertEqual(groups["repeat"]["range_pln"], ["239.83", "240.23"])
+        self.assertEqual(groups["unconfirmed"]["range_pln"], ["240.13", "240.2"])
+
     def test_all_derived_statuses_have_zero_verified_changes(self):
         report = analyze(self.data)
         self.assertFalse(any(x["verified_repricing"] for x in report["monitoring"].values()))
