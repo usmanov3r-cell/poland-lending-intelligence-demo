@@ -7,6 +7,7 @@ import json
 import shutil
 from pathlib import Path
 
+from decision_case import run as run_decision_case
 from offline_market_demo import BASE, FIXTURE, analyze, load_data
 
 
@@ -28,6 +29,7 @@ def main() -> None:
     spl_lines = "\n".join(
         f"  - {labels[g]}: {v['count']} lenders, PLN {float(v['range_pln'][0]):.2f}–{float(v['range_pln'][1]):.2f}"
         for g, v in report["spl_by_segment"].items())
+    case = run_decision_case(dest)
     markdown = f"""# Poland consumer lending — offline portfolio check
 
 **Archived research reference:** {report['as_of']} | **Coverage:** {report['coverage']} brands.
@@ -50,6 +52,14 @@ def main() -> None:
 
 **No real lender repricing or campaign launch is verified.** The synthetic price exceeds the example SPL ceiling reference and MUST NOT be interpreted as a compliant offer.
 
+## Pricing decision case (synthetic)
+
+A competitor cut its fee. Should we copy it? Fictional lenders, hypothetical NBP rate cut, PLN 8,000 / 12 months.
+
+- Copy vs keep our fee: PLN {case['difference_copy_vs_keep_pln']} per 1,000 applications.
+- Copying pays off only if take-up reaches {float(case['break_even_takeup_for_copy'])*100:.1f}% (assumed 38%, today 35%).
+- Details: `decision_case.html`.
+
 ## Reproducibility boundary
 
 This package reproduces the summarized calculations and comparison classifications from **sanitized fixture data**, and opens a **pre-rendered HTML snapshot** of the executive dashboard. It does **not** rerun the live capture workflow, reconstruct original source archives, regenerate the HTML from lender evidence, or call a paid AI API. The original source validation was performed separately in a private research workspace.
@@ -61,6 +71,7 @@ This package reproduces the summarized calculations and comparison classificatio
     print("Scenario mismatch: rejected | Matched unchanged: accepted | Synthetic delta: review candidate")
     print(f"Open: {dest / 'index.html'}")
     print(f"Evidence limitations: {dest / 'demo_review.md'}")
+    print(f"Pricing decision case (synthetic): {dest / 'decision_case.html'}")
 
 
 if __name__ == "__main__":

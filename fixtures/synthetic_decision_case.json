@@ -1,0 +1,38 @@
+{
+  "data_classification": "SYNTHETIC_DEMO",
+  "note": "Fictional lender, fictional competitor, hypothetical rate event. Illustration of a pricing decision, not a forecast.",
+  "scenario": {"product": "INST", "segment": "new", "principal_pln": 8000, "months": 12},
+  "event": {
+    "hypothetical": true,
+    "label": "Hypothetical NBP rate cut between Month 1 and Month 2",
+    "reference_rate_month1_pct": "3.75",
+    "reference_rate_month2_pct": "3.50"
+  },
+  "competitor": {
+    "name": "Competitor X (fictional)",
+    "month1": {"nominal_pct": "14.5", "fee_pln": "1400"},
+    "month2": {"nominal_pct": "14.0", "fee_pln": "1250"}
+  },
+  "our_costs_month2": {
+    "funding_cost_pln": "300",
+    "servicing_cost_pln": "110",
+    "origination_cost_pln": "85",
+    "pd_12m": "0.10",
+    "lgd": "0.75",
+    "ead_at_default_pln": "6000",
+    "marketing_cost_per_application_pln": "40"
+  },
+  "options": {
+    "keep_fee": {"label": "A: Keep our fee", "nominal_pct": "14.0", "fee_pln": "1400", "takeup_rate": "0.35"},
+    "copy_competitor": {"label": "B: Copy competitor", "nominal_pct": "14.0", "fee_pln": "1250", "takeup_rate": "0.38"}
+  },
+  "stress_tests": {
+    "extra_customers_pd_12m": "0.15",
+    "keep_fee_takeup_if_customers_leave": "0.33"
+  },
+  "not_modelled": [
+    "Early repayment fee refunds (Art. 49) - reduce fee income in both options.",
+    "Repeat loans - more new customers may pay off later; the strongest argument for copying.",
+    "Discounting, capital and tax."
+  ]
+}
