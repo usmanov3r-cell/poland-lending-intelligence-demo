@@ -4,6 +4,8 @@ Competitor pricing research for Polish non-bank consumer lending:
 short-term loans (SPL, PLN 2,000 / 30 days) and instalment loans
 (INST, PLN 8,000 / 12 months).
 
+**Live demo (no install):** https://usmanov3r-cell.github.io/poland-lending-intelligence-demo/
+
 **Key finding:** paid short-term loan prices sit within PLN 0.44 of the
 legal cost limit (PLN 240.27), for new and repeat borrowers alike.
 Lenders compete on free first loans, loan limits and speed, not on price.
