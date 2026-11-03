@@ -19,7 +19,7 @@ class SiteTests(unittest.TestCase):
 
     def test_landing_links_and_labels(self):
         page = (SITE / "index.html").read_text(encoding="utf-8")
-        for needed in ('href="dashboard.html"', 'href="decision_case.html"', "Synthetic", "not approved offers", "Don't copy"):
+        for needed in ('href="dashboard.html"', 'href="decision_case.html"', "Synthetic", "not approved offers", "Keep the fee"):
             self.assertIn(needed, page)
         self.assertNotIn("—", page)
 

@@ -65,7 +65,7 @@ a.card h3{{margin:6px 0 4px;font-size:17px}}a.card p{{margin:0;color:var(--muted
 <div class="facts">
 <div class="fact"><div class="v">99.8%</div><div class="k">of the legal maximum, or more: what all 11 paid short-term loans cost (PLN 2,000 / 30 days)</div></div>
 <div class="fact"><div class="v">15 of 18</div><div class="k">lenders with a comparable price; new and repeat customers kept apart</div></div>
-<div class="fact"><div class="v">Don't copy</div><div class="k">Matching a competitor's PLN {e(fee_cut)} fee cut brings more customers but {e(less)}% less profit. (Fictional case)</div></div>
+<div class="fact"><div class="v">Keep the fee</div><div class="k">Matching a competitor's PLN {e(fee_cut)} fee cut: more customers, {e(less)}% less profit (fictional case)</div></div>
 </div>
 <div class="cards">
 <a class="card" href="dashboard.html"><span class="tag">Public calculator data</span><h3>Market dashboard &rarr;</h3>
