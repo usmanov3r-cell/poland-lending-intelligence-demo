@@ -29,5 +29,10 @@ class SiteTests(unittest.TestCase):
         self.assertIn('property="og:image" content="https://usmanov3r-cell.github.io/poland-lending-intelligence-demo/og-image.png"', page)
         self.assertTrue((SITE / "og-image.png").is_file())
 
+    def test_landing_numbers_match_data(self):
+        page = (SITE / "index.html").read_text(encoding="utf-8")
+        for needed in ("SPL: 99.8%", "INST: 48% gap", "PLN 1,159 to 2,236", "7% less profit"):
+            self.assertIn(needed, page)
+
 if __name__ == "__main__":
     unittest.main()

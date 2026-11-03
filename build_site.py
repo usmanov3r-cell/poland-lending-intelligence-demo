@@ -13,6 +13,7 @@ import shutil
 from pathlib import Path
 
 from decision_case import CASE, evaluate, render
+from offline_market_demo import load_data
 
 BASE = Path(__file__).resolve().parent
 SITE = BASE / "docs"
@@ -26,6 +27,13 @@ def landing(case: dict) -> str:
     keep, copy = float(a["profit_per_1000_applications_pln"]), float(b["profit_per_1000_applications_pln"])
     less = f"{(keep - copy) / keep * 100:.0f}"
     fee_cut = f"{float(a['fee_pln']) - float(b['fee_pln']):,.0f}"
+    market = load_data()
+    spl = [float(x["borrow_cost_pln"]) for x in market["spl"]["paid_observations"]]
+    cap = float(market["spl"]["statutory_scenario_reference_pln"])
+    share = f"{int(min(spl) / cap * 1000) / 10:.1f}"  # rounded down: every price is at least this share
+    inst = [float(x["borrow_cost_pln"]) for x in market["inst"]["observations"]]
+    lo, hi = min(inst), max(inst)
+    gap = f"{(hi - lo) / hi * 100:.0f}"
     e = lambda s: html.escape(s, quote=True)
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,9 +71,9 @@ a.card h3{{margin:6px 0 4px;font-size:17px}}a.card p{{margin:0;color:var(--muted
 <p class="sub">Finds competitor offers from public sources, checks every price change against evidence, and turns findings into pricing decisions. Adaptable to other markets.</p></div></header>
 <main class="wrap">
 <div class="facts">
-<div class="fact"><div class="v">99.8%</div><div class="k">of the legal maximum, or more: what all 11 paid short-term loans cost (PLN 2,000 / 30 days)</div></div>
-<div class="fact"><div class="v">15 of 18</div><div class="k">lenders with a comparable price; new and repeat customers kept apart</div></div>
-<div class="fact"><div class="v">Keep the fee</div><div class="k">Matching a competitor's PLN {e(fee_cut)} fee cut: more customers, {e(less)}% less profit (fictional case)</div></div>
+<div class="fact"><div class="v">SPL: {e(share)}%</div><div class="k">of the legal maximum or more: every paid short-term loan (PLN 2,000 / 30 days)</div></div>
+<div class="fact"><div class="v">INST: {e(gap)}% gap</div><div class="k">instalment loans (PLN 8,000 / 12 months) range from PLN {lo:,.0f} to {hi:,.0f}</div></div>
+<div class="fact"><div class="v">Keep the fee</div><div class="k">matching a competitor's PLN {e(fee_cut)} fee cut: more customers, {e(less)}% less profit (fictional case)</div></div>
 </div>
 <div class="cards">
 <a class="card" href="dashboard.html"><span class="tag">Public calculator data</span><h3>Market dashboard &rarr;</h3>
