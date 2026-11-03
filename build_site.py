@@ -18,6 +18,7 @@ BASE = Path(__file__).resolve().parent
 SITE = BASE / "docs"
 DASHBOARD = BASE / "assets" / "dashboard_snapshot.html"
 REPO = "https://github.com/usmanov3r-cell/poland-lending-intelligence-demo"
+PAGES = "https://usmanov3r-cell.github.io/poland-lending-intelligence-demo/"
 
 
 def landing(case: dict) -> str:
@@ -30,6 +31,13 @@ def landing(case: dict) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Market Discovery - Lending</title>
 <meta name="description" content="AI-assisted market discovery for non-bank consumer lending. Poland example: competitor prices, promotions, evidence-checked changes and a pricing decision case.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI market discovery for non-bank consumer lending - Poland example">
+<meta property="og:description" content="Competitor prices, promotions and evidence-checked changes for 18 Polish non-bank lenders, turned into pricing decisions. Live demo and code.">
+<meta property="og:url" content="{PAGES}">
+<meta property="og:image" content="{PAGES}og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 :root{{--ink:#142a3c;--muted:#5d7083;--line:#dce5ed;--paper:#f5f8fb;--accent:#2f6793;--amber:#77551f;--amberbg:#fbf5e7}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}}

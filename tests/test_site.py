@@ -24,5 +24,10 @@ class SiteTests(unittest.TestCase):
         self.assertNotIn("—", page)
 
 
+    def test_link_preview_image(self):
+        page = (SITE / "index.html").read_text(encoding="utf-8")
+        self.assertIn('property="og:image" content="https://usmanov3r-cell.github.io/poland-lending-intelligence-demo/og-image.png"', page)
+        self.assertTrue((SITE / "og-image.png").is_file())
+
 if __name__ == "__main__":
     unittest.main()
