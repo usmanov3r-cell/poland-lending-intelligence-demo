@@ -21,7 +21,11 @@ REPO = "https://github.com/usmanov3r-cell/poland-lending-intelligence-demo"
 
 
 def landing(case: dict) -> str:
-    diff = f"{abs(float(case['difference_copy_vs_keep_pln'])):,.0f}"
+    a, b = case["options"]["keep_fee"], case["options"]["copy_competitor"]
+    keep, copy = float(a["profit_per_1000_applications_pln"]), float(b["profit_per_1000_applications_pln"])
+    less = f"{(keep - copy) / keep * 100:.0f}"
+    fee_cut = f"{float(a['fee_pln']) - float(b['fee_pln']):,.0f}"
+    extra = int(b["loans_per_1000_applications"]) - int(a["loans_per_1000_applications"])
     be = f"{float(case['break_even_takeup_for_copy']) * 100:.1f}"
     e = lambda s: html.escape(s, quote=True)
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
@@ -55,9 +59,9 @@ footer a,.links a{{color:var(--accent)}}
 <p>Competitor pricing research from public lender calculators, and a worked pricing decision: should you copy a competitor's fee cut?</p></div></header>
 <main class="wrap">
 <div class="facts">
-<div class="fact"><div class="v">PLN 0.44</div><div class="k">Max gap between 11 paid short-term prices and the legal cap (PLN 240.27)</div></div>
-<div class="fact"><div class="v">15 / 18</div><div class="k">Lenders with a comparable price; new and repeat customers kept apart</div></div>
-<div class="fact"><div class="v">-PLN {e(diff)}</div><div class="k">Copying a competitor's fee cut, per 1,000 applications (fictional case)</div></div>
+<div class="fact"><div class="v">99.8%</div><div class="k">of the legal maximum, or more: what all 11 paid short-term loans cost (PLN 2,000 / 30 days)</div></div>
+<div class="fact"><div class="v">15 of 18</div><div class="k">lenders with a comparable price; new and repeat customers kept apart</div></div>
+<div class="fact"><div class="v">{e(less)}% less profit</div><div class="k">if we copy a competitor's PLN {e(fee_cut)} fee cut, even with {extra} more loans per 1,000 applications (fictional case)</div></div>
 </div>
 <h2>Open the demo</h2>
 <div class="cards">
