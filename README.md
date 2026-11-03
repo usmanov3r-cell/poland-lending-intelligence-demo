@@ -59,4 +59,4 @@ and `output/demo_review.md` (summary).
 - [docs/FIVE_MINUTE_DEMO.md](docs/FIVE_MINUTE_DEMO.md) - 5-minute walkthrough
 - [docs/METHODOLOGY_AND_SOURCES.md](docs/METHODOLOGY_AND_SOURCES.md) - methods and legal sources
 
-Author: Ren - consumer lending product & compliance (Baltics, Poland).
+Author: Ren - consumer lending product & compliance.
