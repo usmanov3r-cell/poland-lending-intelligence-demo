@@ -1,21 +1,59 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pricing Decision Case</title><style>
-body{max-width:980px;margin:28px auto;padding:0 16px;font:15px/1.55 -apple-system,"Segoe UI",Arial,sans-serif;color:#142a3c;background:#f5f8fb}
-section,header{background:#fff;border:1px solid #dce5ed;border-radius:12px;padding:20px;margin:14px 0}
-table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #e7ecf2;text-align:left}
-td{text-align:right;font-variant-numeric:tabular-nums}thead th{background:#f1f5f9}.muted{color:#607283}
-.big{font-size:26px;font-weight:750}.tag{display:inline-block;background:#fbf5e7;color:#77551f;border:1px solid #efdbba;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700}
+:root{--ink:#142a3c;--muted:#5d7083;--line:#dce5ed;--paper:#f5f8fb;--accent:#2f6793;--good:#14675d;--goodbg:#e9f5f2;--amber:#77551f;--amberbg:#fbf5e7}
+*{box-sizing:border-box}body{max-width:980px;margin:24px auto;padding:0 16px;font:15px/1.55 -apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--paper)}
+section,header{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin:14px 0}
+h1{font-size:clamp(24px,4vw,32px);line-height:1.2;margin:10px 0 8px}h2{font-size:18px;margin:0 0 10px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:8px;border-bottom:1px solid #e7ecf2;text-align:left;font-weight:400}
+td{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}thead th{background:#f1f5f9;font-weight:700}
+tr.total th,tr.total td{font-weight:750;border-top:2px solid var(--line)}
+.muted{color:var(--muted);font-size:14px}.big{font-size:26px;font-weight:750}
+.tag{display:inline-block;background:var(--amberbg);color:var(--amber);border:1px solid #efdbba;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.box{border:1px solid var(--line);border-radius:10px;padding:14px}.box b{display:block;font-size:20px;margin:4px 0}
+.decision{background:var(--goodbg);border-color:#b6dcd2}.decision h2{color:var(--good)}
+.scroll{overflow-x:auto}a{color:var(--accent)}
 </style></head><body>
-<header><span class="tag">SYNTHETIC - FICTIONAL LENDERS, HYPOTHETICAL RATE EVENT</span>
-<h1>A competitor cut its fee. Should we copy it?</h1><p class="muted">PLN 8,000 / 12 months, new customers. Both options are compared in the same month, so the rate cut affects them equally.</p></header>
-<section><h2>1. What happened</h2><p>Hypothetical NBP cut: legal interest cap falls to 14.00%. Fee cap stays PLN 1,600.00.</p>
-<p>Competitor X (fictional): Month 1 fee PLN 1,400.00 + interest PLN 642.16 at 14.5%; Month 2 fee PLN 1,250.00 + interest PLN 619.56 at 14.0%.</p></section>
-<section><h2>2. Our two options</h2><table><thead><tr><th>Per loan / per 1,000 applications (PLN)</th><th>A: Keep our fee</th><th>B: Copy competitor</th></tr></thead><tr><th>Interest (annuity, 12 months)</th><td>619.56</td><td>619.56</td></tr><tr><th>Fee</th><td>1,400.00</td><td>1,250.00</td></tr><tr><th>Expected loss (PD x LGD x EAD)</th><td>450.00</td><td>450.00</td></tr><tr><th>Contribution per loan</th><td>1,074.56</td><td>924.56</td></tr><tr><th>Take-up rate</th><td>35%</td><td>38%</td></tr><tr><th>Loans per 1,000 applications</th><td>350</td><td>380</td></tr><tr><th>Profit per 1,000 applications</th><td>336,096.00</td><td>311,332.80</td></tr></table>
-<p class="muted">Costs per loan in both options: funding 300, servicing 110, origination 85. Marketing: PLN 40 per application. The take-up increase is an assumption, not a measured effect.</p>
-<p>Difference (copy vs keep): <span class="big">PLN -24,763.20</span> per 1,000 applications</p></section>
-<section><h2>3. Break-even</h2><p>Copying pays off only if take-up rises from 35% to <b>40.7%</b>. Business question: will a PLN 150.00 lower fee bring that many more customers?</p></section>
-<section><h2>4. Stress tests</h2><ul>
-<li>Extra customers are riskier (PD 15% instead of 10%): copy vs keep = PLN -31,513.20.</li>
-<li>Keeping our fee loses customers (take-up 33%): copy vs keep = PLN -3,272.00.</li></ul></section>
-<section><h2>5. Decision</h2><p><b>Do not copy automatically. Copying pays off only if take-up reaches the break-even rate; test it in a controlled experiment and check the risk of the extra customers.</b></p><h3>Not modelled</h3><ul><li>Early repayment fee refunds (Art. 49) - reduce fee income in both options.</li><li>Repeat loans - more new customers may pay off later; the strongest argument for copying.</li><li>Discounting, capital and tax.</li></ul></section>
+<header><span class="tag">SYNTHETIC - FICTIONAL LENDERS, HYPOTHETICAL RATE CUT</span>
+<h1>A competitor cut its fee. Should we copy it?</h1>
+<p class="muted">Instalment loan, PLN 8,000 / 12 months, new customers. We compare two options in the same month, so the rate cut affects both equally.</p></header>
+
+<section><h2>1. Why this matters in Poland</h2>
+<p>Polish law caps the price of consumer loans in two ways:</p>
+<ul><li><b>Interest</b> - at most 2 x (NBP reference rate + 3.5 pp). When the NBP cuts its rate, the cap falls for every lender right away.</li>
+<li><b>Fees and other non-interest costs</b> - at most 10% of the loan + 10% per year, never above 45% (Art. 36a); here PLN 1,600.00. Not linked to the NBP rate.</li></ul>
+<p class="muted">Most non-bank lenders already price at or near these caps, so a rate cut lowers their income without any decision on their part.</p></section>
+
+<section><h2>2. What happened</h2>
+<div class="grid">
+<div class="box"><span class="muted">NBP reference rate (hypothetical)</span><b>3.75% &rarr; 3.50%</b>
+<span class="muted">Interest cap 14.50% &rarr; 14.00%. Interest on the loan at the cap: PLN 642.16 &rarr; 619.56 (<b style="display:inline;font-size:inherit">- PLN 22.60</b> per loan, for everyone).</span></div>
+<div class="box"><span class="muted">Competitor X (fictional)</span><b>Fee PLN 1,400.00 &rarr; 1,250.00</b>
+<span class="muted">On top of the lower interest, it cut its fee by PLN 150.00 to win customers. Customer pays PLN 1,869.56 instead of our PLN 2,019.56.</span></div>
+</div>
+<p><b>The question:</b> keep our fee at PLN 1,400.00, or match the competitor at PLN 1,250.00?</p></section>
+
+<section><h2>3. Profit per loan</h2><div class="scroll"><table>
+<thead><tr><th>PLN per loan</th><th>A: Keep our fee</th><th>B: Copy competitor</th></tr></thead><tr class=""><th>Interest (annuity at the 14.0% cap)</th><td>619.56</td><td>619.56</td></tr><tr class=""><th>Fee (non-interest cost)</th><td>1,400.00</td><td>1,250.00</td></tr><tr class=""><th>Funding cost</th><td>- 300.00</td><td>- 300.00</td></tr><tr class=""><th>Servicing cost</th><td>- 110.00</td><td>- 110.00</td></tr><tr class=""><th>Origination cost</th><td>- 85.00</td><td>- 85.00</td></tr><tr class=""><th>Expected loss (PD 10% x LGD 75% x EAD 6,000.00)</th><td>- 450.00</td><td>- 450.00</td></tr><tr class="total"><th>Profit per loan</th><td>1,074.56</td><td>924.56</td></tr></table></div>
+<p class="muted">Copying gives up PLN 150.00 on every loan. Interest and costs are the same in both options.</p></section>
+
+<section><h2>4. Profit per 1,000 applications</h2><div class="scroll"><table>
+<thead><tr><th>PLN per 1,000 applications</th><th>A: Keep our fee</th><th>B: Copy competitor</th></tr></thead><tr class=""><th>Take-up (loans per 100 applications)</th><td>35%</td><td>38% (assumed)</td></tr><tr class=""><th>Loans</th><td>350</td><td>380</td></tr><tr class=""><th>Loans x profit per loan</th><td>376,096.00</td><td>351,332.80</td></tr><tr class=""><th>Marketing (PLN 40.00 per application)</th><td>- 40,000.00</td><td>- 40,000.00</td></tr><tr class="total"><th>Profit</th><td>336,096.00</td><td>311,332.80</td></tr></table></div>
+<p>Copying brings 30 more loans but <span class="big">PLN 24,763.20</span> (7.4%) less profit.</p>
+<p class="muted">The extra take-up is an assumption, not a measured effect.</p></section>
+
+<section><h2>5. When would the answer change?</h2><div class="grid">
+<div class="box"><span class="muted">Copying wins if take-up rises above</span><b>40.7%</b><span class="muted">We assumed 38%. Will a PLN 150.00 lower fee bring that many more customers?</span></div>
+<div class="box"><span class="muted">Copying also wins if keeping our fee drops take-up below</span><b>32.7%</b><span class="muted">Today 35%. Watch our own take-up after the competitor's move.</span></div>
+</div>
+<h3 style="font-size:15px;margin:16px 0 6px">Stress tests</h3><ul>
+<li>The 30 extra customers are riskier (PD 15% instead of 10%): copying loses PLN 31,513.20.</li>
+<li>Keeping our fee loses some customers (take-up 33%): keeping still earns PLN 3,272.00 more.</li></ul></section>
+
+<section class="decision"><h2>6. Decision</h2>
+<p><b>Don't copy automatically.</b> Test the lower fee on a share of new applications and measure take-up and early defaults.</p>
+<ul><li>Copy only if take-up rises above 40.7% and the extra customers do not default more.</li>
+<li>Reconsider if our own take-up falls below 32.7% while we keep the fee.</li></ul>
+<h3 style="font-size:15px;margin:14px 0 6px">Not modelled</h3><ul class="muted"><li>Early repayment fee refunds (Art. 49) - reduce fee income in both options.</li><li>Repeat loans - more new customers may pay off later; the strongest argument for copying.</li><li>Discounting, capital and tax.</li></ul></section>
+<p class="muted">Fictional lenders and a hypothetical rate cut. Interest is calculated from the annuity formula; every option is checked against both legal caps. <a href="index.html">Back to overview</a></p>
 </body></html>

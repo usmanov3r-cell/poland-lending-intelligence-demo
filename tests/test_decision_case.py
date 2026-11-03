@@ -32,6 +32,13 @@ class DecisionCaseTests(unittest.TestCase):
         self.assertEqual(self.r["difference_copy_vs_keep_pln"], "-24763.20")
         self.assertEqual(self.r["break_even_takeup_for_copy"], "0.4068")
 
+    def test_rate_cut_and_reverse_break_even(self):
+        self.assertEqual(self.r["interest_lost_per_loan_from_rate_cut_pln"], "22.60")
+        self.assertEqual(self.r["profit_change_copy_vs_keep_pct"], "-7.4")
+        self.assertEqual(self.r["break_even_takeup_for_keep"], "0.3270")
+        self.assertEqual(self.r["options"]["keep_fee"]["customer_total_cost_pln"], "2019.56")
+        self.assertEqual(self.r["options"]["copy_competitor"]["customer_total_cost_pln"], "1869.56")
+
     def test_stress_tests(self):
         st = self.r["stress_tests"]
         self.assertEqual(st["extra_customers_riskier"]["difference_vs_keep_pln"], "-31513.20")
