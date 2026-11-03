@@ -1,14 +1,20 @@
-# Poland Lending Market Intelligence - offline demo
+# AI market discovery for non-bank consumer lending - Poland example
 
-Competitor pricing research for Polish non-bank consumer lending:
-short-term loans (SPL, PLN 2,000 / 30 days) and instalment loans
-(INST, PLN 8,000 / 12 months).
+Finds and compares competitor offers from public sources: prices, promotions,
+new vs repeat customers. Every price change is checked against evidence before
+it is reported, and findings are turned into pricing decisions.
+
+Built for Poland first. The method - fixed loan scenarios, evidence checks,
+legal-cap reference - can be adapted to other markets (see below).
+
+Poland scenarios: short-term loans (SPL, PLN 2,000 / 30 days) and instalment
+loans (INST, PLN 8,000 / 12 months).
 
 **Live demo (no install):** https://usmanov3r-cell.github.io/poland-lending-intelligence-demo/
 
-**Key finding:** paid short-term loan prices sit within PLN 0.44 of the
-legal cost limit (PLN 240.27), for new and repeat borrowers alike.
-Lenders compete on free first loans, loan limits and speed, not on price.
+**Key finding:** all 11 paid short-term loans cost 99.8% of the legal maximum
+(PLN 240.27) or more, for new and repeat borrowers alike. Lenders compete on
+free first loans, loan limits and speed, not on price.
 
 ## What is inside
 
@@ -18,6 +24,7 @@ Lenders compete on free first loans, loan limits and speed, not on price.
 - Price-change check: rejects different loan amounts, accepts unchanged
   prices, flags a test price change for review, never as verified.
 - Legal cost-limit reference for each scenario.
+- AI-assisted: AI ranks and explains evidence; code does every calculation.
 
 ## Pricing decision case (synthetic)
 
@@ -53,6 +60,15 @@ and `output/demo_review.md` (summary).
 - The +PLN 1 price change and the decision case are synthetic, for illustration only.
 - Legal limits use the NBP rate valid at capture date; they change with NBP decisions.
 - Research prototype, not a production service.
+
+## Adapting to another market
+
+The checks and the decision case are generic. To run it for another market, change:
+
+- **Lender list** - brands, products, official websites.
+- **Loan scenarios** - the standard amount and term to compare.
+- **Legal caps** - the local interest and fee limits (Poland: 2 x (NBP rate + 3.5 pp) and Art. 36a).
+- **Sources** - local regulator and central-bank pages for news and rate changes.
 
 ## Read more
 
