@@ -38,6 +38,20 @@
 .acq-table tbody td:nth-child(4):before{content:"Eligibility caveat / source"}
 }
 @media print{.acquisition-hero{grid-template-columns:1fr 1fr}.acq-funnel{grid-template-columns:repeat(3,1fr)}.acq-table{min-width:auto}.acq-table-wrap{overflow:visible}}
+
+/* phone layout */
+@media(max-width:600px){
+header{padding:22px 16px 24px}.intro{margin-top:16px;gap:16px}.intro h1{font-size:27px;letter-spacing:-.6px}
+.main{padding:16px 16px 40px}
+nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -16px 18px;padding:0 16px 6px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}nav a{white-space:nowrap;flex:0 0 auto}
+.sect-title{flex-direction:column;align-items:flex-start;gap:3px}
+.metric{min-height:0;padding:14px 16px}.metric .v{font-size:23px;margin-top:6px}
+.price{grid-template-columns:1fr auto;grid-template-areas:"name info" "bar bar";row-gap:5px;column-gap:10px;padding:8px 0}
+.price-name{grid-area:name}.price-info{grid-area:info}.price .bartrack{grid-area:bar}
+.lender{white-space:normal;overflow:visible;font-size:13px}
+.cap-axis{margin:0 0 6px 0}
+}
 </style></head>
 <body><header><div class="top"><div class="brand">Lending intelligence / Poland</div><div class="tag">EVIDENCE-FIRST · OFFLINE PORTFOLIO DEMO</div></div>
 <div class="intro"><div><h1>The price ceiling shapes how Polish lenders compete.</h1><p>The reviewed short-term lenders quote paid borrowing costs within PLN 0.44 of the legal cost limit. For instalment loans, Provident is the clear low-price outlier. What should a lender investigate next?</p></div><div class="hero-callout"><strong>Executive conclusion · 31 Oct 2026</strong>In short-term lending, standard price is almost fully constrained by law. Test free-first-loan offers, eligible limits and fast decisions instead. No verified lender repricing is reported.</div></div></header>

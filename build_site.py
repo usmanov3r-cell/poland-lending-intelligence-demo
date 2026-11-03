@@ -47,6 +47,7 @@ a.card h3{{margin:6px 0 4px;font-size:17px}}a.card p{{margin:0;color:var(--muted
 .tag{{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;background:#e9f1f7;color:#2f5d80}}
 .tag.syn{{background:var(--amberbg);color:var(--amber)}}
 .note{{font-size:12px;color:var(--muted);margin:14px 0 24px}}.note a{{color:var(--accent)}}
+@media(max-width:600px){{header{{padding:20px 0 40px}}.eyebrow{{font-size:10px}}.facts,.cards{{gap:8px}}.cards{{margin-top:8px}}.fact{{padding:10px 14px}}.fact .v{{font-size:19px}}.fact .k{{font-size:12px}}a.card{{padding:12px 14px}}a.card h3{{font-size:16px;margin:4px 0 2px}}}}
 </style></head><body>
 <header><div class="wrap"><div class="eyebrow">Poland - non-bank consumer lending - Oct 2026</div>
 <h1>The legal price cap shapes how Polish lenders compete.</h1></div></header>
